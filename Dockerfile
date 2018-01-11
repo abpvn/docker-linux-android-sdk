@@ -11,7 +11,8 @@ ENV ANDROID_NDK_HOME /opt/android-ndk-linux
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	unzip \
-	wget
+	wget \
+	rsync
 RUN cd /opt/android-sdk-linux && \
 	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip && \
 	unzip sdk-tools.zip && \
