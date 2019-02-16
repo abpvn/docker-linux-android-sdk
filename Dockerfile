@@ -16,5 +16,8 @@ RUN cd /opt/android-sdk-linux && \
 	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \
 	unzip sdk-tools.zip && \
 	rm -f sdk-tools.zip && \
-	yes | sdkmanager --licenses && \
+	echo y | sdkmanager "build-tools;26.0.2" \
+	"platforms;android-25" \
+	"build-tools;28.0.3" \
+	"platforms;android-27" && \
 	sdkmanager "cmake;3.6.4111459"
