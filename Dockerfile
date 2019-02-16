@@ -16,8 +16,11 @@ RUN cd /opt/android-sdk-linux && \
 	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \
 	unzip sdk-tools.zip && \
 	rm -f sdk-tools.zip && \
-	yes | sdkmanager --licenses && \
-    sdkmanager "cmake;3.6.4111459"
+	echo y | sdkmanager "build-tools;26.0.2" \
+	"platforms;android-25" \
+	"build-tools;28.0.3" \
+	"platforms;android-27" && \
+	sdkmanager "cmake;3.6.4111459"
 RUN wget -q --output-document=android-ndk.zip https://dl.google.com/android/repository/android-ndk-r18b-linux-x86_64.zip && \
 	unzip android-ndk.zip && \
 	rm -f android-ndk.zip && \
