@@ -11,7 +11,13 @@ ENV ANDROID_NDK_HOME /opt/android-ndk-linux
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	unzip \
-	wget
+	wget \
+	gnupg2 \
+	build-essential \
+	git
+RUN git clone https://github.com/mipmip/blackbox \
+	&& cd blackbox \
+	&& make manual-install
 RUN cd /opt/android-sdk-linux && \
 	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \
 	unzip sdk-tools.zip && \
@@ -21,3 +27,4 @@ RUN cd /opt/android-sdk-linux && \
 	"build-tools;28.0.3" \
 	"platforms;android-27" && \
 	sdkmanager "cmake;3.6.4111459"
+RUN apt-get remove -y build-essential git && apt autoremove -y
