@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	gnupg2 \
 	build-essential \
 	git
-RUN git clone https://github.com/mipmip/blackbox \
+RUN git clone https://github.com/StackExchange/blackbox \
 	&& cd blackbox \
 	&& make manual-install
 RUN cd /opt/android-sdk-linux && \
