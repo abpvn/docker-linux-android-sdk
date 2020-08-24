@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk
-MAINTAINER Dong Hoang <donghoang.nguyen@outlook.com>
+MAINTAINER Hoang Rio <donghoang.nguyen@outlook.com>
 
 RUN mkdir -p /opt/android-sdk-linux && mkdir -p ~/.android && touch ~/.android/repositories.cfg
 WORKDIR /opt
@@ -19,12 +19,11 @@ RUN git clone https://github.com/StackExchange/blackbox \
 	&& cd blackbox \
 	&& make manual-install
 RUN cd /opt/android-sdk-linux && \
-	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip && \
+	wget -q --output-document=sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-6609375_latest.zip && \
 	unzip sdk-tools.zip && \
 	rm -f sdk-tools.zip && \
-	echo y | sdkmanager "build-tools;26.0.2" \
-	"platforms;android-25" \
+	echo y | sdkmanager --sdk_root=${ANDROID_HOME} "build-tools;29.0.3" \
+	"platforms;android-29" \
 	"build-tools;28.0.3" \
 	"platforms;android-27" && \
-	sdkmanager "cmake;3.6.4111459"
-RUN apt-get remove -y build-essential git && apt autoremove -y
+	sdkmanager --sdk_root=${ANDROID_HOME} "cmake;3.6.4111459"
